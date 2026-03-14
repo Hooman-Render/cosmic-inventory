@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Inventory: Milky Way</title>
+    <meta name="description" content="Travel through the Milky Way with interactive cards, light-year scale distances, and key facts about nearby stars, nebulae, and the galactic core.">
+    <link rel="preload" href="../fonts/Exo2-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/Audiowide-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="../images/milky-way/proxima-centauri.avif" imagesrcset="../images/milky-way/proxima-centauri-220.avif 220w, ../images/milky-way/proxima-centauri-320.avif 320w, ../images/milky-way/proxima-centauri.avif 500w" imagesizes="(max-width: 480px) 220px, (max-width: 900px) 320px, 500px" fetchpriority="high">
+    <link rel="manifest" href="../images/logo/fav-icon/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="../images/logo/fav-icon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/logo/fav-icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/logo/fav-icon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/logo/fav-icon/apple-touch-icon.png">
+    <meta name="theme-color" content="#0a0e1a">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/script.js" type="module" defer></script>
+</head>
+
+
+<body data-asset-scope="milky-way" data-mode="solid">
+    <!-- Set mode before paint -->
+    <script data-mode-bootstrap>
+        (() => {
+            try {
+                const requested = new URLSearchParams(window.location.search).get('mode');
+                const stored = localStorage.getItem('viewMode');
+                const mode = requested === 'solid' || requested === 'glide'
+                    ? requested
+                    : (stored === 'solid' || stored === 'glide' ? stored : null);
+                if (mode) document.body.dataset.mode = mode;
+            } catch (_error) {
+
+            }
+        })();
+    </script>
+
+    <!-- Glide particles -->
+    <div aria-hidden="true" id="particles-layer"></div>
+    <!-- Fixed top controls -->
+    <div class="top-controls" aria-label="Site controls">
+        <a class="site-logo-link" href="../index.html" aria-label="Cosmic Inventory home">
+            <img class="site-logo" src="../images/logo/logo-cosmic-inventory.svg" alt="Cosmic Inventory" width="56" height="56">
+        </a>
+        <div class="mode-toggle">
+            <button id="modeToggle" class="mode-btn" type="button" aria-pressed="false" aria-label="Switch between Solid and Glide">
+                <svg class="btn-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                    <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <polyline points="12,1 12,10"/>
+                        <circle fill="none" cx="12" cy="13" r="9" stroke-dasharray="49.48 7.07" stroke-dashoffset="10.6"/>
+                    </g>
+                </svg>
+                <span class="btn-sr">Solid on</span>
+            </button>
+            <span class="mode-toggle-state" data-mode-toggle-status>Solid on</span>
+        </div>
+    </div>
+    <!-- Main nav -->
+    <div class="nav-bar">
+        <ul>
+            <li class="list">
+                <a href="../index.html" aria-label="Go to Homepage">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/home.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Home</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="solar-system.html" aria-label="View Solar System page">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/solar-system.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Solar System</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="milky-way.html" aria-label="View Milky Way page">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/milky-way.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Milky Way</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="intergalactic.html" aria-label="View Intergalactic page">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/universe.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Intergalactic</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list list-settings" data-particles-direct>
+                <a href="#" aria-label="Open settings menu">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/gear.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Settings</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list list-top">
+                <a href="#" data-back-to-top aria-label="Back to top">
+                    <span class="icon">
+                        <img src="../images/logo/top.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Top</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+    <!-- Page hero -->
+<header class="hero">
+        <div class="hero-circle">
+            <div class="circle-ring ring-1"></div>
+            <div class="circle-ring ring-2"></div>
+            <div class="circle-ring ring-3"></div>
+
+            <div class="hero-content">
+                <h1>MILKY WAY GALAXY</h1>
+                <p class="subtitle">Within Our Galaxy</p>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-label">Stars</span>
+                <span class="stat-value">200-400B</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Distance Scale</span>
+                <span class="stat-value">Light-Years</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Diameter</span>
+                <span class="stat-value">100,000 ly</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Solid and Glide views -->
+    <main class="container">
+        <!-- Solid view -->
+        <section class="mode mode-solid" data-mode="solid">
+            <h2 class="sr-only">Solid mode</h2>
+            <section class="intro-section">
+                <h2>Journey Through Our Galaxy</h2>
+                <p class="intro-text">Distances at this scale are measured in light-years (ly), the distance light travels in one year. Our solar system resides in the Orion Spur, about halfway between the galactic center and the outer edge.</p>
+            </section>
+
+            <!-- Card grid -->
+            <section aria-label="astra cards" class="astra-grid">
+                <article class="card" data-set-theme="nearestStars" data-card="" data-preview-src="../images/milky-way/proxima-centauri.avif">
+                    <div class="card-head">
+                        <span class="card-number">01</span>
+                        <h3>Nearest Stars</h3>
+                        <button aria-controls="info-nearestStars" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Nearest Stars details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Nearest Stars in the Milky Way" class="card-media" width="220" height="220" loading="eager" fetchpriority="high" decoding="async" src="../images/milky-way/proxima-centauri-220.avif" srcset="../images/milky-way/proxima-centauri-220.avif 220w, ../images/milky-way/proxima-centauri-320.avif 320w, ../images/milky-way/proxima-centauri.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">Our closest stellar neighbor is Proxima Centauri, part of the Alpha Centauri system. These red dwarf stars are the nearest to our Sun.</p>
+                    </div>
+                    <div aria-label="Nearest Stars information" class="popup" hidden="" id="info-nearestStars" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-nearestStars">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-nearestStars">Nearest Stars</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">4.24 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Type</span>
+                                    <span class="data-value">Red Dwarf</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">System</span>
+                                    <span class="data-value">Triple Star</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="localInterstellarCloud" data-card="" data-preview-src="../images/milky-way/local-cloud.avif">
+                    <div class="card-head">
+                        <span class="card-number">02</span>
+                        <h3>Local Interstellar Cloud</h3>
+                        <button aria-controls="info-localInterstellarCloud" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Local Interstellar Cloud details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Local Interstellar Cloud" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/milky-way/local-cloud-220.avif" srcset="../images/milky-way/local-cloud-220.avif 220w, ../images/milky-way/local-cloud-320.avif 320w, ../images/milky-way/local-cloud.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The solar system is currently moving within this diffuse cloud of gas and dust, which is part of the larger Local Bubble.</p>
+                    </div>
+                    <div aria-label="Local Interstellar Cloud information" class="popup" hidden="" id="info-localInterstellarCloud" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-localInterstellarCloud">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-localInterstellarCloud">Local Interstellar Cloud</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Span</span>
+                                    <span class="data-value"><span class="tilde">~</span>300 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Type</span>
+                                    <span class="data-value">Gas Cloud</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Temperature</span>
+                                    <span class="data-value">6,000 K</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="openClusters" data-card="" data-preview-src="../images/milky-way/open-cluster.avif">
+                    <div class="card-head">
+                        <span class="card-number">03</span>
+                        <h3>Open Clusters</h3>
+                        <button aria-controls="info-openClusters" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Open Clusters details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Open Cluster in the Milky Way" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/milky-way/open-cluster-220.avif" srcset="../images/milky-way/open-cluster-220.avif 220w, ../images/milky-way/open-cluster-320.avif 320w, ../images/milky-way/open-cluster.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">Collections of young stars born from the same molecular cloud. The Hyades cluster in Taurus is one of the nearest open clusters.</p>
+                    </div>
+                    <div aria-label="Open Clusters information" class="popup" hidden="" id="info-openClusters" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-openClusters">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-openClusters">Open Clusters</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value"><span class="tilde">~</span>150 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Stars</span>
+                                    <span class="data-value">Hundreds</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Age</span>
+                                    <span class="data-value">625M years</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="orionNebula" data-card="" data-preview-src="../images/milky-way/orion-nebula.avif">
+                    <div class="card-head">
+                        <span class="card-number">04</span>
+                        <h3>Orion Nebula</h3>
+                        <button aria-controls="info-orionNebula" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Orion Nebula details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Orion Nebula" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/milky-way/orion-nebula-220.avif" srcset="../images/milky-way/orion-nebula-220.avif 220w, ../images/milky-way/orion-nebula-320.avif 320w, ../images/milky-way/orion-nebula.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">A spectacular stellar nursery where new stars are being born. Visible to the naked eye as a fuzzy patch in Orion&#x27;s sword.</p>
+                    </div>
+                    <div aria-label="Orion Nebula information" class="popup" hidden="" id="info-orionNebula" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-orionNebula">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-orionNebula">Orion Nebula</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">1,350 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">24 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Type</span>
+                                    <span class="data-value">Emission Nebula</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="globularClusters" data-card="" data-preview-src="../images/milky-way/globular-clusters.avif">
+                    <div class="card-head">
+                        <span class="card-number">05</span>
+                        <h3>Globular Clusters</h3>
+                        <button aria-controls="info-globularClusters" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Globular Clusters details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Globular Clusters" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/milky-way/globular-clusters-220.avif" srcset="../images/milky-way/globular-clusters-220.avif 220w, ../images/milky-way/globular-clusters-320.avif 320w, ../images/milky-way/globular-clusters.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">Densely packed spherical collections of ancient stars orbiting the galactic core. M13 in Hercules is a prime example.</p>
+                    </div>
+                    <div aria-label="Globular Clusters information" class="popup" hidden="" id="info-globularClusters" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-globularClusters">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-globularClusters">Globular Clusters</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value"><span class="tilde">~</span>25,000 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Stars</span>
+                                    <span class="data-value">Millions</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Age</span>
+                                    <span class="data-value">12B years</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="galacticCenter" data-card="" data-preview-src="../images/milky-way/center-milky-way-galaxy.avif">
+                    <div class="card-head">
+                        <span class="card-number">06</span>
+                        <h3>Galactic Center</h3>
+                        <button aria-controls="info-galacticCenter" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Galactic Center details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Galactic Center of the Milky Way" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/milky-way/center-milky-way-galaxy-220.avif" srcset="../images/milky-way/center-milky-way-galaxy-220.avif 220w, ../images/milky-way/center-milky-way-galaxy-320.avif 320w, ../images/milky-way/center-milky-way-galaxy.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The heart of the Milky Way, home to the supermassive black hole Sagittarius A* with a mass of 4 million suns.</p>
+                    </div>
+                    <div aria-label="Galactic Center information" class="popup" hidden="" id="info-galacticCenter" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-galacticCenter">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-galacticCenter">Galactic Center</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">26,000 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Black Hole Mass</span>
+                                    <span class="data-value">4M Suns</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Region</span>
+                                    <span class="data-value">Sgr A*</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="galacticDiskEdge" data-card="" data-preview-src="../images/milky-way/galactic-disk-edge.avif">
+                    <div class="card-head">
+                        <span class="card-number">07</span>
+                        <h3>Galactic Disk Edge</h3>
+                        <button aria-controls="info-galacticDiskEdge" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Galactic Disk Edge details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Galactic Disk Edge" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/milky-way/galactic-disk-edge-220.avif" srcset="../images/milky-way/galactic-disk-edge-220.avif 220w, ../images/milky-way/galactic-disk-edge-320.avif 320w, ../images/milky-way/galactic-disk-edge.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">Our solar system sits in the Orion Spur, roughly halfway to the edge of the galactic disk&#x27;s luminous matter.</p>
+                    </div>
+                    <div aria-label="Galactic Disk Edge information" class="popup" hidden="" id="info-galacticDiskEdge" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-galacticDiskEdge">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-galacticDiskEdge">Galactic Disk Edge</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value"><span class="tilde">~</span>26,000 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Location</span>
+                                    <span class="data-value">Orion Spur</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Position</span>
+                                    <span class="data-value">Midway</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="galacticHalo" data-card="" data-preview-src="../images/milky-way/galactic-halo.avif">
+                    <div class="card-head">
+                        <span class="card-number">08</span>
+                        <h3>Galactic Halo</h3>
+                        <button aria-controls="info-galacticHalo" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Galactic Halo details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Galactic Halo" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/milky-way/galactic-halo-220.avif" srcset="../images/milky-way/galactic-halo-220.avif 220w, ../images/milky-way/galactic-halo-320.avif 320w, ../images/milky-way/galactic-halo.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">A vast, diffuse sphere of old stars, globular clusters, and dark matter surrounding the entire visible galaxy.</p>
+                    </div>
+                    <div aria-label="Galactic Halo information" class="popup" hidden="" id="info-galacticHalo" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-galacticHalo">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-galacticHalo">Galactic Halo</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Extent</span>
+                                    <span class="data-value">100,000+ ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Composition</span>
+                                    <span class="data-value">Dark Matter</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Shape</span>
+                                    <span class="data-value">Spherical</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </section>
+
+            <!-- Glide view -->
+            <section class="mode mode-glide" data-mode="glide">
+            <h2 class="sr-only">Glide mode</h2>
+            <!-- Glide items -->
+            <section aria-label="astra set" class="set" data-feature="set">
+                <div class="set-viewport">
+                    <div aria-hidden="true" class="set-clip"></div>
+                    <div class="set-track">
+                        <article class="set-object" data-set-theme="nearestStars">
+                            <h3 class="sr-only">Nearest Stars</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Nearest Stars" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Nearest Stars</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A nearby group of stars surrounding the Sun, forming the closest neighborhood within our galactic region.</span>
+                                    </summary>
+                                    <div class="set-info">Our closest stellar neighbor is Proxima Centauri, part of the Alpha Centauri system. These red dwarf stars are the nearest to our Sun.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="localInterstellarCloud">
+                            <h3 class="sr-only">Local Interstellar Clouds</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Local Interstellar Clouds" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Local Interstellar Clouds</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">Diffuse gas and dust around the Sun that shape the local environment between nearby stars.</span>
+                                    </summary>
+                                    <div class="set-info">The solar system is currently moving within this diffuse cloud of gas and dust, which is part of the larger Local Bubble.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="openClusters">
+                            <h3 class="sr-only">Open Clusters</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Open Clusters" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Open Clusters</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">Loose groups of young stars born together in the disk, still sharing similar age and chemical makeup.</span>
+                                    </summary>
+                                    <div class="set-info">Collections of young stars born from the same molecular cloud. The Hyades cluster in Taurus is one of the nearest open clusters.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="orionNebula">
+                            <h3 class="sr-only">Orion Nebula</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Orion Nebula" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Orion Nebula</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A bright stellar nursery where new stars and planetary systems are actively forming from collapsing gas.</span>
+                                    </summary>
+                                    <div class="set-info">A spectacular stellar nursery where new stars are being born. Visible to the naked eye as a fuzzy patch in Orion's sword.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="globularClusters">
+                            <h3 class="sr-only">Globular Clusters</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Globular Clusters" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Globular Clusters</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">Compact, ancient swarms of stars orbiting the Milky Way halo, preserving some of the galaxy's oldest populations.</span>
+                                    </summary>
+                                    <div class="set-info">Densely packed spherical collections of ancient stars orbiting the galactic core. M13 in Hercules is a prime example.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="galacticCenter">
+                            <h3 class="sr-only">Galactic Center</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Galactic Center" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Galactic Center</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">The crowded core of the Milky Way, dominated by Sagittarius A* and extreme gravitational conditions.</span>
+                                    </summary>
+                                    <div class="set-info">The heart of the Milky Way, home to the supermassive black hole Sagittarius A* with a mass of 4 million suns.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="galacticDiskEdge">
+                            <h3 class="sr-only">Galactic Disk Edge</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Galactic Disk Edge" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Galactic Disk Edge</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">The outer disk where stellar density drops, marking the transition toward the galaxy's faint outskirts.</span>
+                                    </summary>
+                                    <div class="set-info">Our solar system sits in the Orion Spur, roughly halfway to the edge of the galactic disk's luminous matter.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="galacticHalo">
+                            <h3 class="sr-only">Galactic Halo</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Galactic Halo" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Galactic Halo</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A vast, diffuse halo of sparse stars and dark matter extending far beyond the visible disk.</span>
+                                    </summary>
+                                    <div class="set-info">A vast, diffuse sphere of old stars, globular clusters, and dark matter surrounding the entire visible galaxy.</div>
+                                </details>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <!-- Shared Glide preview -->
+            <div aria-hidden="true" class="glide-media" id="glideMedia"></div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>Cosmic Inventory: A Journey by Distance &copy; 2026</p>
+    </footer>
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top">
+        <img src="../images/logo/top.svg" alt="" width="28" height="28">
+    </button>
+</body>
+
+</html>
+
+

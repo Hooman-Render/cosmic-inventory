@@ -1,0 +1,9 @@
+{
+    "name": "Cosmic Inventory",
+    "short_name": "Cosmic",
+    "icons": [],
+    "theme_color": "#0a0e1a",
+    "background_color": "#0a0e1a",
+    "display": "standalone",
+    "start_url": "../../../index.html"
+}

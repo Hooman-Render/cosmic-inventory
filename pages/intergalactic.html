@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Inventory: Intergalactic</title>
+    <meta name="description" content="Go beyond the Milky Way with interactive intergalactic cards, large-scale universe distances, and key facts about neighboring galaxies and cosmic structure.">
+    <link rel="preload" href="../fonts/Exo2-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/Audiowide-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="../images/intergalactic/local-group.avif" imagesrcset="../images/intergalactic/local-group-220.avif 220w, ../images/intergalactic/local-group-320.avif 320w, ../images/intergalactic/local-group.avif 500w" imagesizes="(max-width: 480px) 220px, (max-width: 900px) 320px, 500px" fetchpriority="high">
+    <link rel="manifest" href="../images/logo/fav-icon/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="../images/logo/fav-icon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/logo/fav-icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/logo/fav-icon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/logo/fav-icon/apple-touch-icon.png">
+    <meta name="theme-color" content="#0a0e1a">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/script.js" type="module" defer></script>
+</head>
+
+
+<body data-asset-scope="intergalactic" data-mode="solid">
+    <!-- Set mode before paint -->
+    <script data-mode-bootstrap>
+        (() => {
+            try {
+                const requested = new URLSearchParams(window.location.search).get('mode');
+                const stored = localStorage.getItem('viewMode');
+                const mode = requested === 'solid' || requested === 'glide'
+                    ? requested
+                    : (stored === 'solid' || stored === 'glide' ? stored : null);
+                if (mode) document.body.dataset.mode = mode;
+            } catch (_error) {
+
+            }
+        })();
+    </script>
+
+    <!-- Glide particles -->
+    <div aria-hidden="true" id="particles-layer"></div>
+    <!-- Fixed top controls -->
+    <div class="top-controls" aria-label="Site controls">
+        <a class="site-logo-link" href="../index.html" aria-label="Cosmic Inventory home">
+            <img class="site-logo" src="../images/logo/logo-cosmic-inventory.svg" alt="Cosmic Inventory" width="56" height="56">
+        </a>
+        <div class="mode-toggle">
+            <button id="modeToggle" class="mode-btn" type="button" aria-pressed="false" aria-label="Switch between Solid and Glide">
+                <svg class="btn-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                    <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <polyline points="12,1 12,10"/>
+                        <circle fill="none" cx="12" cy="13" r="9" stroke-dasharray="49.48 7.07" stroke-dashoffset="10.6"/>
+                    </g>
+                </svg>
+                <span class="btn-sr">Solid on</span>
+            </button>
+            <span class="mode-toggle-state" data-mode-toggle-status>Solid on</span>
+        </div>
+    </div>
+    <!-- Main nav -->
+    <div class="nav-bar">
+        <ul>
+            <li class="list">
+                <a href="../index.html" aria-label="Go to Homepage">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/home.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Home</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="solar-system.html" aria-label="View Solar System page">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/solar-system.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Solar System</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="milky-way.html" aria-label="View Milky Way page">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/milky-way.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Milky Way</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="intergalactic.html" aria-label="View Intergalactic page">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/universe.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Intergalactic</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list list-settings" data-particles-direct>
+                <a href="#" aria-label="Open settings menu">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/gear.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Settings</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list list-top">
+                <a href="#" data-back-to-top aria-label="Back to top">
+                    <span class="icon">
+                        <img src="../images/logo/top.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Top</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+    <!-- Page hero -->
+<header class="hero">
+        <div class="hero-circle">
+            <div class="circle-ring ring-1"></div>
+            <div class="circle-ring ring-2"></div>
+            <div class="circle-ring ring-3"></div>
+
+            <div class="hero-content">
+                <h1>INTERGALACTIC</h1>
+                <p class="subtitle">Beyond the Milky Way</p>
+            </div>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-label">Galaxies</span>
+                <span class="stat-value">2 Trillion</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-label">Observable Universe</span>
+                <span class="stat-value">93B ly</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-label">Age</span>
+                <span class="stat-value">13.8B years</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Solid and Glide views -->
+    <main class="container">
+        <!-- Solid view -->
+        <section class="mode mode-solid" data-mode="solid">
+            <h2 class="sr-only">Solid mode</h2>
+            <section class="intro-section">
+                <h2>Beyond Our Galaxy</h2>
+                <p class="intro-text">The Milky Way is just one of billions of galaxies scattered throughout the cosmos. At these scales, distances are measured in millions and billions of light-years as we explore the structure of the universe itself.</p>
+            </section>
+
+            <!-- Card grid -->
+            <section aria-label="astra cards" class="astra-grid">
+                <article class="card" data-set-theme="localGroup" data-card="" data-preview-src="../images/intergalactic/local-group.avif">
+                    <div class="card-head">
+                        <span class="card-number">01</span>
+                        <h3>Local Group</h3>
+                        <button aria-controls="info-localGroup" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Local Group details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Local Group of galaxies" class="card-media" width="220" height="220" loading="eager" fetchpriority="high" decoding="async" src="../images/intergalactic/local-group-220.avif" srcset="../images/intergalactic/local-group-220.avif 220w, ../images/intergalactic/local-group-320.avif 320w, ../images/intergalactic/local-group.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">Our Milky Way is part of a cluster of over 50 galaxies called the Local Group, spanning approximately 10 million light-years.</p>
+                    </div>
+                    <div aria-label="Local Group information" class="popup" hidden="" id="info-localGroup" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-localGroup">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-localGroup">Local Group</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">10M ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Galaxies</span>
+                                    <span class="data-value">50+</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Major Members</span>
+                                    <span class="data-value">3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-set-theme="canisMajorDwarf" data-card="" data-preview-src="../images/intergalactic/canis-major-dwarf.avif">
+                    <div class="card-head">
+                        <span class="card-number">02</span>
+                        <h3>Canis Major Dwarf</h3>
+                        <button aria-controls="info-canisMajorDwarf" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Canis Major Dwarf details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Canis Major Dwarf galaxy" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/intergalactic/canis-major-dwarf-220.avif" srcset="../images/intergalactic/canis-major-dwarf-220.avif 220w, ../images/intergalactic/canis-major-dwarf-320.avif 320w, ../images/intergalactic/canis-major-dwarf.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+                    <div class="card-info">
+                        <p class="description">The closest known neighboring galaxy to the Milky Way&#x27;s center, though its status is debated as it may be merging with our galaxy.</p>
+                    </div>
+                    <div aria-label="Canis Major Dwarf information" class="popup" hidden="" id="info-canisMajorDwarf" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-canisMajorDwarf">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-canisMajorDwarf">Canis Major Dwarf</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">25,000 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Type</span>
+                                    <span class="data-value">Dwarf Galaxy</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Status</span>
+                                    <span class="data-value">Merging</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-set-theme="magellanicCloud" data-card="" data-preview-src="../images/intergalactic/magellanic-cloud.avif">
+                    <div class="card-head">
+                        <span class="card-number">03</span>
+                        <h3>Magellanic Cloud</h3>
+                        <button aria-controls="info-magellanicCloud" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Magellanic Cloud details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Magellanic Cloud" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/intergalactic/magellanic-cloud-220.avif" srcset="../images/intergalactic/magellanic-cloud-220.avif 220w, ../images/intergalactic/magellanic-cloud-320.avif 320w, ../images/intergalactic/magellanic-cloud.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">A satellite galaxy of the Milky Way, visible from the Southern Hemisphere. It&#x27;s one of our nearest galactic neighbors.</p>
+                    </div>
+                    <div aria-label="Magellanic Cloud information" class="popup" hidden="" id="info-magellanicCloud" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-magellanicCloud">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-magellanicCloud">Magellanic Cloud</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">163,000 ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Type</span>
+                                    <span class="data-value">Irregular</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Stars</span>
+                                    <span class="data-value">30B</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-set-theme="andromedaGalaxy" data-card="" data-preview-src="../images/intergalactic/andromeda-galaxy.avif">
+                    <div class="card-head">
+                        <span class="card-number">04</span>
+                        <h3>Andromeda Galaxy</h3>
+                        <button aria-controls="info-andromedaGalaxy" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Andromeda Galaxy details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Andromeda Galaxy" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/intergalactic/andromeda-galaxy-220.avif" srcset="../images/intergalactic/andromeda-galaxy-220.avif 220w, ../images/intergalactic/andromeda-galaxy-320.avif 320w, ../images/intergalactic/andromeda-galaxy.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The nearest major galaxy to the Milky Way. Andromeda is on a collision course with our galaxy, expected in 4.5 billion years.</p>
+                    </div>
+                    <div aria-label="Andromeda Galaxy information" class="popup" hidden="" id="info-andromedaGalaxy" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-andromedaGalaxy">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-andromedaGalaxy">Andromeda Galaxy</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">2.5M ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Type</span>
+                                    <span class="data-value">Spiral</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Stars</span>
+                                    <span class="data-value">1 Trillion</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-set-theme="triangulumGalaxy" data-card="" data-preview-src="../images/intergalactic/triangulum-galaxy.avif">
+                    <div class="card-head">
+                        <span class="card-number">05</span>
+                        <h3>Triangulum Galaxy</h3>
+                        <button aria-controls="info-triangulumGalaxy" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Triangulum Galaxy details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Triangulum Galaxy" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/intergalactic/triangulum-galaxy-220.avif" srcset="../images/intergalactic/triangulum-galaxy-220.avif 220w, ../images/intergalactic/triangulum-galaxy-320.avif 320w, ../images/intergalactic/triangulum-galaxy.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The third-largest galaxy in the Local Group. A spiral galaxy that may be gravitationally bound to Andromeda.</p>
+                    </div>
+                    <div aria-label="Triangulum Galaxy information" class="popup" hidden="" id="info-triangulumGalaxy" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-triangulumGalaxy">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-triangulumGalaxy">Triangulum Galaxy</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">3M ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Type</span>
+                                    <span class="data-value">Spiral</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Stars</span>
+                                    <span class="data-value">40B</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-set-theme="virgoSuperCluster" data-card="" data-preview-src="../images/intergalactic/virgo-super-cluster.avif">
+                    <div class="card-head">
+                        <span class="card-number">06</span>
+                        <h3>Virgo Super Cluster</h3>
+                        <button aria-controls="info-virgoSuperCluster" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Virgo Supercluster details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Virgo Supercluster" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/intergalactic/virgo-super-cluster-220.avif" srcset="../images/intergalactic/virgo-super-cluster-220.avif 220w, ../images/intergalactic/virgo-super-cluster-320.avif 320w, ../images/intergalactic/virgo-super-cluster.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The Local Group is part of this massive collection of galaxy groups and clusters, containing at least 100 galaxy groups.</p>
+                    </div>
+                    <div aria-label="Virgo Super Cluster information" class="popup" hidden="" id="info-virgoSuperCluster" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-virgoSuperCluster">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-virgoSuperCluster">Virgo Super Cluster</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">110M ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Galaxy Groups</span>
+                                    <span class="data-value">100+</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Galaxies</span>
+                                    <span class="data-value">47,000+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="cosmicWeb" data-card="" data-preview-src="../images/intergalactic/cosmic-web.avif">
+                    <div class="card-head">
+                        <span class="card-number">07</span>
+                        <h3>Cosmic Web</h3>
+                        <button aria-controls="info-cosmicWeb" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Cosmic Web details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Cosmic Web" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/intergalactic/cosmic-web-220.avif" srcset="../images/intergalactic/cosmic-web-220.avif 220w, ../images/intergalactic/cosmic-web-320.avif 320w, ../images/intergalactic/cosmic-web.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The large-scale structure of the universe, composed of galaxy filaments separated by vast astra voids.</p>
+                    </div>
+                    <div aria-label="Cosmic Web information" class="popup" hidden="" id="info-cosmicWeb" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-cosmicWeb">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-cosmicWeb">Cosmic Web</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Scale</span>
+                                    <span class="data-value">Billions ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Structure</span>
+                                    <span class="data-value">Filaments</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Composition</span>
+                                    <span class="data-value">Dark Matter</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="observableUniverse" data-card="" data-preview-src="../images/intergalactic/observable-universe.avif">
+                    <div class="card-head">
+                        <span class="card-number">08</span>
+                        <h3>Observable Universe</h3>
+                        <button aria-controls="info-observableUniverse" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Observable Universe details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Observable Universe" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/intergalactic/observable-universe-220.avif" srcset="../images/intergalactic/observable-universe-220.avif 220w, ../images/intergalactic/observable-universe-320.avif 320w, ../images/intergalactic/observable-universe.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The farthest point from which light has had time to reach us since the Big Bang, defining the limits of what we can observe.</p>
+                    </div>
+                    <div aria-label="Observable Universe information" class="popup" hidden="" id="info-observableUniverse" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-observableUniverse">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-observableUniverse">Observable Universe</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">46B ly</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Age of Light</span>
+                                    <span class="data-value">13.8B years</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Galaxies</span>
+                                    <span class="data-value">2 Trillion</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </section>
+
+            <!-- Glide view -->
+            <section class="mode mode-glide" data-mode="glide">
+            <h2 class="sr-only">Glide mode</h2>
+            <!-- Glide items -->
+            <section aria-label="astra set" class="set" data-feature="set">
+                <div class="set-viewport">
+                    <div aria-hidden="true" class="set-clip"></div>
+                    <div class="set-track">
+                        <article class="set-object" data-set-theme="localGroup">
+                            <h3 class="sr-only">Local Group</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Local Group" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Local Group</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A gravitational family of more than fifty galaxies, including the Milky Way, Andromeda, and Triangulum.</span>
+                                    </summary>
+                                    <div class="set-info">The Local Group spans roughly 10 million light-years and contains more than 50 galaxies, including the Milky Way, Andromeda, and Triangulum.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="canisMajorDwarf">
+                            <h3 class="sr-only">Canis Major Dwarf</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Canis Major Dwarf" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Canis Major Dwarf</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A faint dwarf companion near the Milky Way, likely being stretched and absorbed by tidal forces.</span>
+                                    </summary>
+                                    <div class="set-info">Canis Major Dwarf is one of the nearest dwarf companions and is likely being disrupted as it merges into the Milky Way halo.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="magellanicCloud">
+                            <h3 class="sr-only">Magellanic Clouds</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Magellanic Clouds" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Magellanic Clouds</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">Two irregular satellite galaxies rich in gas, actively forming stars while interacting with the Milky Way.</span>
+                                    </summary>
+                                    <div class="set-info">The Magellanic Clouds are nearby satellite galaxies rich in gas and star-forming regions, interacting gravitationally with the Milky Way.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="andromedaGalaxy">
+                            <h3 class="sr-only">Andromeda Galaxy</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Andromeda Galaxy" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Andromeda Galaxy</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">The nearest major spiral galaxy, moving toward us and expected to merge with the Milky Way.</span>
+                                    </summary>
+                                    <div class="set-info">Andromeda sits about 2.5 million light-years away and is expected to merge with the Milky Way in about 4 to 5 billion years.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="triangulumGalaxy">
+                            <h3 class="sr-only">Triangulum Galaxy</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Triangulum Galaxy" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Triangulum Galaxy</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A smaller spiral in the Local Group, likely linked dynamically to Andromeda and nearby companions.</span>
+                                    </summary>
+                                    <div class="set-info">Triangulum is the third-largest galaxy in the Local Group and may be gravitationally linked to Andromeda as part of the same regional system.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="virgoSuperCluster">
+                            <h3 class="sr-only">Virgo Supercluster</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Virgo Supercluster" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Virgo Supercluster</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A vast concentration of galaxy groups and clusters that includes our Local Group within its structure.</span>
+                                    </summary>
+                                    <div class="set-info">The Virgo Supercluster contains tens of thousands of galaxies and includes the Local Group inside a much larger network of galaxy groups.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="cosmicWeb">
+                            <h3 class="sr-only">Cosmic Web</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Cosmic Web" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Cosmic Web</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">The universe-wide network of filaments and voids where galaxies trace the underlying dark matter scaffold.</span>
+                                    </summary>
+                                    <div class="set-info">The Cosmic Web is the universe-scale pattern of filaments, clusters, and voids shaped largely by dark matter and gravity over cosmic time.</div>
+                                </details>
+                            </div>
+                        </article>
+                        <article class="set-object" data-set-theme="observableUniverse">
+                            <h3 class="sr-only">Observable Universe</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Observable Universe" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Observable Universe</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">The furthest region whose light can reach us, defining the current boundary of cosmic observation.</span>
+                                    </summary>
+                                    <div class="set-info">The Observable Universe marks the farthest distance light has reached us since the Big Bang, defining the current boundary of observation.</div>
+                                </details>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <!-- Shared Glide preview -->
+            <div aria-hidden="true" class="glide-media" id="glideMedia"></div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>Cosmic Inventory: A Journey by Distance &copy; 2026</p>
+    </footer>
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top">
+        <img src="../images/logo/top.svg" alt="" width="28" height="28">
+    </button>
+</body>
+
+</html>
+
+

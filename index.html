@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Inventory: Choose Your View</title>
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="description" content="Explore Cosmic Inventory and compare the Solar System, Milky Way, and Intergalactic scales with interactive views.">
+    <link rel="preload" href="fonts/Exo2-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Audiowide-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="manifest" href="images/logo/fav-icon/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="images/logo/fav-icon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo/fav-icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo/fav-icon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo/fav-icon/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" type="module" defer></script>
+</head>
+
+<body class="landing-body" data-asset-scope="landing">
+    <!-- Landing page entry -->
+    <main class="landing-shell">
+        <header class="landing-hero">
+            <h1>Cosmic Inventory</h1>
+            <h2>Pick your path through the cosmos</h2>
+            <p class="landing-lede">
+                Start in Solid mode for tactile cards, or Glide mode for a scrolling
+                gallery with live theme shifts. Your selection carries into every
+                page.
+            </p>
+        </header>
+
+        <!-- Mode cards -->
+        <section class="landing-modes" aria-label="Choose your mode">
+            <h2 class="sr-only">Choose your mode</h2>
+            <a class="mode-card" data-mode="solid" href="pages/solar-system.html?mode=solid" aria-label="Open Solar System in Solid mode">
+                <div class="mode-glow" aria-hidden="true"></div>
+                <h3>Solid Mode</h3>
+                <p>
+                    Crisp cards, bold focus, and quick scanning. Built for direct
+                    comparisons.
+                </p>
+                <ul class="mode-features">
+                    <li>Card layout focus</li>
+                    <li>Fast hover previews</li>
+                    <li>Structured stats</li>
+                </ul>
+            </a>
+
+            <a class="mode-card" data-mode="glide" href="pages/solar-system.html?mode=glide" aria-label="Open Solar System in Glide mode">
+                <div class="mode-glow" aria-hidden="true"></div>
+                <h3>Glide Mode</h3>
+                <p>
+                    Smooth scroll, immersive highlights, and ambient color changes.
+                    Built for storytelling.
+                </p>
+                <ul class="mode-features">
+                    <li>Scroll-driven layout</li>
+                    <li>Theme color wash</li>
+                    <li>Motion rich focus</li>
+                </ul>
+            </a>
+        </section>
+        
+        <!-- Fixed credits -->
+        <div class="site-signature-shell">
+            <aside class="site-signature" aria-label="Credits">
+                <small>
+                    <span>Designed & Developed by</span>
+                    <cite class="name">Hooman Abbasabadi</cite>
+                </small>
+            </aside>
+        </div>
+
+    </main>
+
+    <footer class="footer landing-footer">
+        <p class="landing-footer-copy">Cosmic Inventory: A Journey by Distance &copy; 2026</p>
+        <p class="landing-footer-validator">
+            <a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener noreferrer" aria-label="Open W3C CSS validator">
+                <img class="css-validator" width="80" height="31" loading="lazy" decoding="async" fetchpriority="low" src="https://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!"/>
+            </a>
+        </p>
+    </footer>
+
+<button class="back-to-top" type="button" data-back-to-top aria-label="back to top">
+    <img src="images/logo/top.svg" alt="" aria-hidden="true" width="28" height="28">
+</button>
+
+</body>
+
+</html>
+

@@ -1,0 +1,56 @@
+{
+  "enabled": true,
+
+  "loopMode": "continuous",
+  "pauseWhenHidden": true,
+
+  "debugLoop": false,
+
+  "particleCountSmall": 480,
+  "particleCountLarge": 1400,
+
+  "dprCapSmall": 0.9,
+  "dprCapLarge": 1.25,
+
+  "colorMode": "cssVar",
+  "colorCssVar": "--color-accent",
+  "colorFallback": "#ffffff",
+
+  "maxOpacity": 0.80,
+
+  "pointSize": 1.2,
+  "pointSizeSmall": 1.2,
+  "pointSizeLarge": 1.2,
+  "sizeAttenuation": false,
+
+  "blending": "linear",
+
+  "fadeInMs": 600,
+  "morphMs": 600,
+  "holdMs": 600,
+  "fadeOutMs": 60,
+
+  "easing": "inOutCubic",
+
+  "rotationSpeedXSmall": 0.0002,
+  "rotationSpeedYSmall": 0.0006,
+  "rotationSpeedXLarge": 0.0003,
+  "rotationSpeedYLarge": 0.0008,
+
+  "driftStrength": 22,
+
+  "startShape": "sphere",
+  "startRadiusFactor": 0.80,
+  "diskDepth": 1,
+
+  "targetShape": "sphere",
+  "circleRadiusFactor": 0.28,
+  "circleOffsetX": 0,
+  "circleOffsetY": 0,
+  "circleOffsetZ": 0,
+
+  "cameraFov": 55,
+  "cameraZ": 560,
+
+  "fpsCap": 24
+}

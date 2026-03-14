@@ -1,0 +1,822 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Inventory: Solar System</title>
+    <meta name="description" content="Explore the Solar System with interactive cards, AU distance context, and quick facts about the Sun, planets, and the Moon.">
+    <link rel="preload" href="../fonts/Exo2-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/Audiowide-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="../images/solar-system/sun.avif" imagesrcset="../images/solar-system/sun-220.avif 220w, ../images/solar-system/sun-320.avif 320w, ../images/solar-system/sun.avif 500w" imagesizes="(max-width: 480px) 220px, (max-width: 900px) 320px, 500px" fetchpriority="high">
+    <link rel="manifest" href="../images/logo/fav-icon/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="../images/logo/fav-icon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/logo/fav-icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/logo/fav-icon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/logo/fav-icon/apple-touch-icon.png">
+    <meta name="theme-color" content="#0a0e1a">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/script.js" type="module" defer></script>
+</head>
+
+
+<body data-asset-scope="solar-system" data-mode="solid">
+    <!-- Set mode before paint -->
+    <script data-mode-bootstrap>
+        (() => {
+            try {
+                const requested = new URLSearchParams(window.location.search).get('mode');
+                const stored = localStorage.getItem('viewMode');
+                const mode = requested === 'solid' || requested === 'glide'
+                    ? requested
+                    : (stored === 'solid' || stored === 'glide' ? stored : null);
+                if (mode) document.body.dataset.mode = mode;
+            } catch (_error) {
+
+            }
+        })();
+    </script>
+
+    <!-- Glide particles -->
+    <div aria-hidden="true" id="particles-layer"></div>
+    <!-- Fixed top controls -->
+    <div class="top-controls" aria-label="Site controls">
+        <a class="site-logo-link" href="../index.html" aria-label="Cosmic Inventory home">
+            <img class="site-logo" src="../images/logo/logo-cosmic-inventory.svg" alt="Cosmic Inventory" width="56" height="56">
+        </a>
+        <div class="mode-toggle">
+            <button id="modeToggle" class="mode-btn" type="button" aria-pressed="false" aria-label="Switch between Solid and Glide">
+                <svg class="btn-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                    <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <polyline points="12,1 12,10"/>
+                        <circle fill="none" cx="12" cy="13" r="9" stroke-dasharray="49.48 7.07" stroke-dashoffset="10.6"/>
+                    </g>
+                </svg>
+                <span class="btn-sr">Solid on</span>
+            </button>
+            <span class="mode-toggle-state" data-mode-toggle-status>Solid on</span>
+        </div>
+    </div>
+    <!-- Main nav -->
+    <div class="nav-bar">
+        <ul>
+            <li class="list">
+                <a href="../index.html" aria-label="Go to Homepage">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/home.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Home</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="solar-system.html" aria-label="View Solar System page">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/solar-system.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Solar System</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="milky-way.html" aria-label="View Milky Way page">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/milky-way.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Milky Way</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="intergalactic.html" aria-label="View Intergalactic page">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/universe.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Intergalactic</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list list-settings" data-particles-direct>
+                <a href="#" aria-label="Open settings menu">
+                    <span class="icon">
+                        <img src="../images/logo/nav-icon/gear.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Settings</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <li class="list list-top">
+                <a href="#" data-back-to-top aria-label="Back to top">
+                    <span class="icon">
+                        <img src="../images/logo/top.svg" alt="" width="55" height="55">
+                    </span>
+                    <span class="text">Top</span>
+                    <span class="circle"></span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+    <!-- Page hero -->
+<header class="hero">
+        <div class="hero-circle">
+            <div class="circle-ring ring-1"></div>
+            <div class="circle-ring ring-2"></div>
+            <div class="circle-ring ring-3"></div>
+
+            <div class="hero-content">
+                <h1>SOLAR SYSTEM</h1>
+                <p class="subtitle">A Journey by Distance</p>
+            </div>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-label">Planets</span>
+                <span class="stat-value">8</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-label">Distance Scale</span>
+                <span class="stat-value">AU</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-label">Age</span>
+                <span class="stat-value">4.6B years</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Solid and Glide views -->
+    <main class="container">
+        <!-- Solid view -->
+        <section class="mode mode-solid" data-mode="solid">
+            <h2 class="sr-only">Solid mode</h2>
+            <section class="intro-section">
+                <h2>The Solar System</h2>
+                <p class="intro-text">Start close to home and travel outward. This page uses astronomical units to compare
+                    distances, so you can feel the scale without drowning in zeros. Open a card to explore key facts and see
+                    each world in motion.</p>
+            </section>
+
+            <!-- Card grid -->
+            <section aria-label="astra cards" class="astra-grid">
+                <article class="card" data-set-theme="sun" data-card="" data-preview-src="../images/solar-system/sun.avif">
+                    <div class="card-head">
+                        <span class="card-number">00</span>
+                        <h3>The Sun</h3>
+                        <button aria-controls="info-sun" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Sun details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="The Sun" class="card-media" width="220" height="220" loading="eager" fetchpriority="high" decoding="async" src="../images/solar-system/sun-220.avif" srcset="../images/solar-system/sun-220.avif 220w, ../images/solar-system/sun-320.avif 320w, ../images/solar-system/sun.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The star at the center of our solar system. Its gravity holds the planets in orbit and its light powers life on Earth.</p>
+                    </div>
+                    <div aria-label="Sun information" class="popup" hidden="" id="info-sun" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-sun">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-sun">The Sun</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Type</span>
+                                    <span class="data-value">G-type star</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">1,392,700 km</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Rotation</span>
+                                    <span class="data-value"><span class="tilde">~</span>25 days</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Surface temp</span>
+                                    <span class="data-value"><span class="tilde">~</span>5,500 &deg;C</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Planets</span>
+                                    <span class="data-value">8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="mercury" data-card="" data-preview-src="../images/solar-system/mercury.avif">
+                    <div class="card-head">
+                        <span class="card-number">01</span>
+                        <h3>Mercury</h3>
+                        <button aria-controls="info-mercury" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Mercury details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Mercury" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/solar-system/mercury-220.avif" srcset="../images/solar-system/mercury-220.avif 220w, ../images/solar-system/mercury-320.avif 320w, ../images/solar-system/mercury.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The smallest planet and closest to the sun. Mercury has no atmosphere and is
+                            covered with craters.</p>
+                    </div>
+                    <div aria-label="Mercury information" class="popup" hidden="" id="info-mercury" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-mercury">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-mercury">Mercury</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">0.39 AU</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">4,879 km</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Orbit</span>
+                                    <span class="data-value">88 days</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Temperature</span>
+                                    <span class="data-value">167&deg;C</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Moons</span>
+                                    <span class="data-value">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="venus" data-card="" data-preview-src="../images/solar-system/venus.avif">
+                    <div class="card-head">
+                        <span class="card-number">02</span>
+                        <h3>Venus</h3>
+                        <button aria-controls="info-venus" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Venus details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Venus" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/solar-system/venus-220.avif" srcset="../images/solar-system/venus-220.avif 220w, ../images/solar-system/venus-320.avif 320w, ../images/solar-system/venus.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">The hottest planet with a dense atmosphere of carbon dioxide. Often called
+                            Earth's "sister planet".</p>
+                    </div>
+                    <div aria-label="Venus information" class="popup" hidden="" id="info-venus" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-venus">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-venus">Venus</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">0.72 AU</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">12,104 km</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Orbit</span>
+                                    <span class="data-value">225 days</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Temperature</span>
+                                    <span class="data-value">464&deg;C</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Moons</span>
+                                    <span class="data-value">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="earth" data-card="" data-preview-src="../images/solar-system/earth.avif">
+                    <div class="card-head">
+                        <span class="card-number">03</span>
+                        <h3>Earth</h3>
+                        <button aria-controls="info-earth" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Earth details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Earth" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/solar-system/earth-220.avif" srcset="../images/solar-system/earth-220.avif 220w, ../images/solar-system/earth-320.avif 320w, ../images/solar-system/earth.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+
+                    <div class="card-info">
+                        <p class="description">Our home planet, the only known place in the universe with life. 71% of the
+                            surface is covered with water.</p>
+                    </div>
+                    <div aria-label="Earth information" class="popup" hidden="" id="info-earth" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-earth">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-earth">Earth</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">1 AU</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">12,742 km</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Orbit</span>
+                                    <span class="data-value">365 days</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Temperature</span>
+                                    <span class="data-value">15&deg;C</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Moons</span>
+                                    <span class="data-value">1</span>
+                                    <button class="popup-action" data-overlay-target="moon-card" type="button">Earth's Moon</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <article class="card card-overlay-card" data-set-theme="moon" data-card="" data-preview-src="../images/solar-system/moon.avif" hidden id="moon-card">
+                        <div class="card-head">
+                            <span class="card-number">Satellite</span>
+                            <h3>Moon</h3>
+                            <button aria-controls="info-moon" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Moon details" class="info-trigger" type="button">
+                                <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                            </button>
+                        </div>
+                        <img alt="Moon" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/solar-system/moon-220.avif" srcset="../images/solar-system/moon-220.avif 220w, ../images/solar-system/moon-320.avif 320w, ../images/solar-system/moon.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+                        <div class="card-info">
+                            <p class="description">Earth's only natural satellite. The Moon stabilizes Earth's tilt and shapes our tides.
+                            </p>
+                        </div>
+                        <div aria-label="Moon information" class="popup" hidden="" id="info-moon" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-moon">
+                            <div class="popup-set" role="document">
+                                <div class="popup-head">
+                                    <h4 class="popup-title" id="popup-title-info-moon">Moon</h4>
+                                    <button aria-label="Close" class="popup-close" data-overlay-close type="button"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="data-grid">
+                                    <div class="data-item">
+                                        <span class="data-label">Type</span>
+                                        <span class="data-value">Natural satellite</span>
+                                    </div>
+                                    <div class="data-item">
+                                        <span class="data-label">Orbits</span>
+                                        <span class="data-value">Earth</span>
+                                    </div>
+                                    <div class="data-item">
+                                        <span class="data-label">Orbit</span>
+                                        <span class="data-value">27.3 days</span>
+                                    </div>
+                                    <div class="data-item">
+                                        <span class="data-label">Phases</span>
+                                        <span class="data-value">29.5 days</span>
+                                    </div>
+                                    <div class="data-item">
+                                        <span class="data-label">Radius</span>
+                                        <span class="data-value">1,737 km</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </article>
+                <article class="card" data-set-theme="mars" data-card="" data-preview-src="../images/solar-system/mars.avif">
+                    <div class="card-head">
+                        <span class="card-number">04</span>
+                        <h3>Mars</h3>
+                        <button aria-controls="info-mars" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Mars details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Mars" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/solar-system/mars-220.avif" srcset="../images/solar-system/mars-220.avif 220w, ../images/solar-system/mars-320.avif 320w, ../images/solar-system/mars.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+                    <div class="card-info">
+                        <p class="description">The Red Planet, named after the Roman god of war. Mars has the highest mountain
+                            in our solar system: Olympus Mons.</p>
+                    </div>
+                    <div aria-label="Mars information" class="popup" hidden="" id="info-mars" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-mars">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-mars">Mars</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">1.52 AU</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">6,779 km</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Orbit</span>
+                                    <span class="data-value">687 days</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Temperature</span>
+                                    <span class="data-value">-65&deg;C</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Moons</span>
+                                    <span class="data-value">2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="jupiter" data-card="" data-preview-src="../images/solar-system/jupiter.avif">
+                    <div class="card-head">
+                        <span class="card-number">05</span>
+                        <h3>Jupiter</h3>
+                        <button aria-controls="info-jupiter" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Jupiter details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Jupiter" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/solar-system/jupiter-220.avif" srcset="../images/solar-system/jupiter-220.avif 220w, ../images/solar-system/jupiter-320.avif 320w, ../images/solar-system/jupiter.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+                    <div class="card-info">
+                        <p class="description">The largest planet in our solar system. Jupiter is a gas giant with an iconic Great Red Spot.</p>
+                    </div>
+                    <div aria-label="Jupiter information" class="popup" hidden="" id="info-jupiter" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-jupiter">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-jupiter">Jupiter</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">5.20 AU</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">139,820 km</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Orbit</span>
+                                    <span class="data-value">12 years</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Temperature</span>
+                                    <span class="data-value">-110&deg;C</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Moons</span>
+                                    <span class="data-value">79</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="saturn" data-card="" data-preview-src="../images/solar-system/saturn.avif">
+                    <div class="card-head">
+                        <span class="card-number">06</span>
+                        <h3>Saturn</h3>
+                        <button aria-controls="info-saturn" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Saturn details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Saturn" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/solar-system/saturn-220.avif" srcset="../images/solar-system/saturn-220.avif 220w, ../images/solar-system/saturn-320.avif 320w, ../images/solar-system/saturn.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+                    <div class="card-info">
+                        <p class="description">Known for its spectacular ring system of ice and rock. Saturn is the second-largest planet.</p>
+                    </div>
+                    <div aria-label="Saturn information" class="popup" hidden="" id="info-saturn" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-saturn">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-saturn">Saturn</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">9.58 AU</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">116,460 km</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Orbit</span>
+                                    <span class="data-value">29 years</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Temperature</span>
+                                    <span class="data-value">-140&deg;C</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Moons</span>
+                                    <span class="data-value">82</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="uranus" data-card="" data-preview-src="../images/solar-system/uranus.avif">
+                    <div class="card-head">
+                        <span class="card-number">07</span>
+                        <h3>Uranus</h3>
+                        <button aria-controls="info-uranus" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Uranus details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Uranus" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/solar-system/uranus-220.avif" srcset="../images/solar-system/uranus-220.avif 220w, ../images/solar-system/uranus-320.avif 320w, ../images/solar-system/uranus.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+                    <div class="card-info">
+                        <p class="description">An ice giant that rotates on its side. Uranus has a unique blue-green color from methane in the atmosphere.</p>
+                    </div>
+                    <div aria-label="Uranus information" class="popup" hidden="" id="info-uranus" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-uranus">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-uranus">Uranus</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">19.22 AU</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">50,724 km</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Orbit</span>
+                                    <span class="data-value">84 years</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Temperature</span>
+                                    <span class="data-value">-195&deg;C</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Moons</span>
+                                    <span class="data-value">27</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-set-theme="neptune" data-card="" data-preview-src="../images/solar-system/neptune.avif">
+                    <div class="card-head">
+                        <span class="card-number">08</span>
+                        <h3>Neptune</h3>
+                        <button aria-controls="info-neptune" aria-expanded="false" aria-haspopup="dialog" aria-label="Open Neptune details" class="info-trigger" type="button">
+                            <img aria-hidden="true" alt="" class="popup-icon" width="24" height="24" src="../images/logo/popup.svg">
+                        </button>
+                    </div>
+                    <img alt="Neptune" class="card-media" width="220" height="220" loading="lazy" decoding="async" src="../images/solar-system/neptune-220.avif" srcset="../images/solar-system/neptune-220.avif 220w, ../images/solar-system/neptune-320.avif 320w, ../images/solar-system/neptune.avif 500w" sizes="(max-width: 450px) 56vw, (max-width: 900px) 34vw, 24vw">
+                    <div class="card-info">
+                        <p class="description">The farthest planet from the sun. Neptune has the strongest winds in our solar system, up to 2,100 km/h.</p>
+                    </div>
+                    <div aria-label="Neptune information" class="popup" hidden="" id="info-neptune" role="dialog" aria-modal="true" aria-labelledby="popup-title-info-neptune">
+                        <div class="popup-set" role="document">
+                            <div class="popup-head">
+                                <h4 class="popup-title" id="popup-title-info-neptune">Neptune</h4>
+                                <button aria-label="Close" class="popup-close" type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="data-grid">
+                                <div class="data-item">
+                                    <span class="data-label">Distance</span>
+                                    <span class="data-value">30.07 AU</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Diameter</span>
+                                    <span class="data-value">49,244 km</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Orbit</span>
+                                    <span class="data-value">165 years</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Temperature</span>
+                                    <span class="data-value">-200&deg;C</span>
+                                </div>
+                                <div class="data-item">
+                                    <span class="data-label">Moons</span>
+                                    <span class="data-value">14</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </section>
+
+            <!-- Glide view -->
+            <section class="mode mode-glide" data-mode="glide">
+            <h2 class="sr-only">Glide mode</h2>
+            <!-- Glide items -->
+            <section aria-label="astra set" class="set" data-feature="set">
+                <div class="set-viewport">
+                    <div aria-hidden="true" class="set-clip"></div>
+                    <div class="set-track">
+
+                        <article class="set-object" data-set-theme="sun">
+                            <h3 class="sr-only">The Sun</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about The Sun" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">The Sun</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">The luminous heart of our system, a massive sphere of plasma that provides the energy for all life on Earth.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        The Sun's gravity holds the solar system together, keeping everything from the biggest planets to the smallest particles of debris in its orbit.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+
+                        <article class="set-object" data-set-theme="mercury">
+                            <h3 class="sr-only">Mercury</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Mercury" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Mercury</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">The smallest planet, racing through space with extreme temperature swings and a rugged, cratered surface.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        Mercury has extreme temperature swings and a heavily cratered surface shaped by impacts.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+
+                        <article class="set-object" data-set-theme="venus">
+                            <h3 class="sr-only">Venus</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Venus" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Venus</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A world of crushing pressure, extreme heat, and a brilliant, thick atmosphere of sulfuric acid clouds.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        Venus is shrouded in thick clouds and has a runaway greenhouse effect that makes it the hottest planet.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+
+                        <article class="set-object" data-set-theme="earth">
+                            <h3 class="sr-only">Earth</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Earth" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Earth</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A vibrant world of vast oceans, shifting clouds, and a complex atmosphere that sustains all known life.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        Earth's atmosphere and liquid water enable life. Its magnetic field helps shield the surface from solar radiation.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+
+                        <article class="set-object" data-set-theme="moon">
+                            <h3 class="sr-only">Moon</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Moon" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Moon</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">Earth's ancient natural satellite that governs our ocean tides and stabilizes our planet's axial tilt.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        The Moon stabilizes Earth's axial tilt and drives ocean tides through gravitational interaction.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+
+                        <article class="set-object" data-set-theme="mars">
+                            <h3 class="sr-only">Mars</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Mars" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Mars</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A desert world of oxidized red dust, towering dormant volcanoes, and deep, ancient river valleys.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        Mars shows evidence of ancient rivers and lakes. Olympus Mons is the tallest volcano in the solar system.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+
+                        <article class="set-object" data-set-theme="jupiter">
+                            <h3 class="sr-only">Jupiter</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Jupiter" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Jupiter</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">The solar system's massive gas giant, dominated by ancient swirling storms and the iconic, centuries-old Great Red Spot.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        Jupiter is the largest planet, with powerful storms and dozens of moons. Its gravity shapes the architecture of the outer solar system.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+
+                        <article class="set-object" data-set-theme="saturn">
+                            <h3 class="sr-only">Saturn</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Saturn" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Saturn</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">Majestic rings composed of billions of individual ice particles and rocky debris.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        Saturn's rings are made of countless ice and rock particles. The system spans hundreds of thousands of kilometers but is very thin.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+
+                        <article class="set-object" data-set-theme="uranus">
+                            <h3 class="sr-only">Uranus</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Uranus" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Uranus</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">An immense ice giant that uniquely rotates on its side with a extreme axial tilt.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        Uranus rotates on its side, likely due to an ancient collision. Methane in the atmosphere gives it a blue green hue.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+
+                        <article class="set-object" data-set-theme="neptune">
+                            <h3 class="sr-only">Neptune</h3>
+                            <div class="set-inner">
+                                <details class="set-review">
+                                    <summary aria-label="Toggle more about Neptune" class="set-desc">
+                                        <span class="set-head">
+                                            <span class="set-title">Neptune</span>
+                                            <span aria-hidden="true" class="setIcon"></span>
+                                        </span>
+                                        <span class="set-text">A turbulent world of deep blue hues, featuring the fastest supersonic winds and most violent storms in the solar system.</span>
+                                    </summary>
+                                    <div class="set-info">
+                                        Neptune has the fastest winds in the solar system and dramatic storms in its deep blue atmosphere.
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+            <!-- Shared Glide preview -->
+            <div aria-hidden="true" class="glide-media" id="glideMedia"></div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>Cosmic Inventory: A Journey by Distance &copy; 2026</p>
+    </footer>
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top">
+        <img src="../images/logo/top.svg" alt="" width="28" height="28">
+    </button>
+</body>
+
+</html>
