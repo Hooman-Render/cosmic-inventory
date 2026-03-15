@@ -20,7 +20,16 @@ Main project areas:
 
 - A landing page that lets the visitor choose between Solid mode and Glide mode (`index.html:24-79`)
 - Three content pages: Solar System, Milky Way, and Intergalactic (`pages/solar-system.html`, `pages/milky-way.html`, `pages/intergalactic.html`)
+- A dedicated 404 recovery page for unmapped routes (`404.html:22-57`, `css/style.css:3165-3598`)
 - A shared visual system driven by CSS custom properties and reusable layout components (`css/style.css:54-182`)
+
+## Latest Development: 404 Page
+
+The project now includes a dedicated `404.html` page for unmapped routes instead of relying on a JavaScript redirect. The document is intentionally marked with `noindex` so error routes stay out of search results (`404.html:7-19`).
+
+The recovery flow is kept simple on purpose. A regular `Call Home` link returns the visitor to `index.html`, while the decorative `404` layer is set to `pointer-events: none` and the action block keeps its own stacking context so the button remains clickable (`404.html:25-40`, `css/style.css:3235-3254`, `css/style.css:3293-3303`).
+
+The styling follows the same shared token system and responsive layout rules as the rest of the site, so the error page feels consistent with the landing experience rather than looking like a disconnected fallback (`css/style.css:3170-3358`, `css/style.css:3578-3598`).
 
 ## Requirements Checklist
 
@@ -112,6 +121,7 @@ If one member is afflicted with pain,
 Other members uneasy will remain.
 If you've no sympathy for human pain,
 The name of human you cannot retain."
-— Saadi Shirazi
+
+"Saadi Shirazi"
 
 Even when one part of the world, or the heart, is in pain, we can still find the strength to create, to connect, and to keep looking at the stars.
