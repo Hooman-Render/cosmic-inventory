@@ -2,13 +2,17 @@
 
 Cosmic Inventory is an informative website about cosmic scale, built as a school project. It guides the user through the Solar System, the Milky Way, and intergalactic structures through two presentation modes: Solid and Glide.
 
+## Website Preview
+
+[Open Cosmic Inventory](https://hooman-render.github.io/cosmic-inventory/)
+
 ## Reflection & Personal Note
 
 My name is Hooman, and I completed this project during a period of significant personal difficulty.
 
 Despite the major ups and downs in my recent life circumstances, the loss of loved ones, and the ongoing situation in my homeland, which deeply affected my courage and motivation, I kept going. Building this website became an important escape for me. Even when it was difficult to find the strength to continue, I completed this project with real pleasure and learned a great deal throughout the process.
 
-This website is still a work in progress. I plan to continue improving it, apply the updates it still needs, and eventually launch it online when it is ready.
+This website is still a work in progress. The project currently has a GitHub Pages preview, and I plan to continue improving it, apply the updates it still needs, and publish a more complete version when it is ready.
 
 ## Project Overview
 
